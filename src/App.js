@@ -8,7 +8,7 @@ function App() {
   const [repositories, setRepositories] = useState([])
   const [title, setTitle] = useState('')
   const [url, setUrl] = useState('')
-  const [tech, setTech] = useState('')
+  const [techs, setTechs] = useState('')
 
   useEffect(() => {
     api.get('/repositories').then(response => {
@@ -18,7 +18,7 @@ function App() {
 
   async function handleAddRepository(e) {
     e.preventDefault()
-    const repo = { title, url, tech }
+    const repo = { title, url, techs }
     api.post('/repositories', repo).then(response => {
       setRepositories([...repositories, response.data])
     }).catch(error => {
@@ -74,10 +74,10 @@ function App() {
         />
 
         <input
-          id="tech"
-          value={tech}
-          placeholder="Used Tech"
-          onChange={e => setTech(e.target.value)} />
+          id="techs"
+          value={techs}
+          placeholder="Used Techs"
+          onChange={e => setTechs(e.target.value)} />
 
         <button onClick={handleAddRepository}>Adicionar</button>
       </form>
